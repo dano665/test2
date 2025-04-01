@@ -12,6 +12,38 @@
             height: 100vh;
             background-color: #ffe6f2;
             font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://www.pngall.com/wp-content/uploads/2016/07/Heart-PNG-File.png') no-repeat center/cover;
+            animation: floatUp 5s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
         }
         .container {
             text-align: center;
@@ -19,6 +51,8 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
         }
         img {
             width: 120px;
@@ -53,6 +87,7 @@
     </style>
 </head>
 <body>
+    <div class="background-animation"></div>
     <div class="container">
         <img src="https://www.pngall.com/wp-content/uploads/2016/07/Heart-PNG-File.png" alt="Süßes Herz">
         <h1>Möchtest du mit mir auf ein Date gehen?</h1>
@@ -61,5 +96,18 @@
             <button class="no-button" onclick="alert('Oh nein! 😢')">Nein</button>
         </div>
     </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.querySelector(".background-animation").appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 500);
+    </script>
 </body>
 </html>
