@@ -10,40 +10,56 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f5f5f5;
+            background-color: #ffe6f2;
             font-family: Arial, sans-serif;
         }
         .container {
             text-align: center;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         img {
-            width: 150px;
+            width: 120px;
             margin-bottom: 20px;
         }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
         button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 18px;
-            background-color: #ff4081;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
         }
-        button:hover {
+        .yes-button {
+            background-color: #ff4081;
+        }
+        .yes-button:hover {
             background-color: #e91e63;
+        }
+        .no-button {
+            background-color: #b0bec5;
+        }
+        .no-button:hover {
+            background-color: #90a4ae;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://cdn.pixabay.com/photo/2017/01/31/17/55/heart-2024132_1280.png" alt="Süßes Herz">
+        <img src="https://www.pngall.com/wp-content/uploads/2016/07/Heart-PNG-File.png" alt="Süßes Herz">
         <h1>Möchtest du mit mir auf ein Date gehen?</h1>
-        <button onclick="alert('Ja! Sehr gerne! 😊')">Ja</button>
+        <div class="button-container">
+            <button class="yes-button" onclick="alert('Ja! Sehr gerne! 😊')">Ja</button>
+            <button class="no-button" onclick="alert('Oh nein! 😢')">Nein</button>
+        </div>
     </div>
 </body>
 </html>
