@@ -1,113 +1,70 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date Anfrage</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #ffe6f2;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            position: relative;
-        }
-        .background-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        .heart {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: url('https://www.pngall.com/wp-content/uploads/2016/07/Heart-PNG-File.png') no-repeat center/cover;
-            animation: floatUp 5s linear infinite;
-            opacity: 0.7;
-        }
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) scale(0.5);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) scale(1.2);
-                opacity: 0;
-            }
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
-        }
-        img {
-            width: 120px;
-            margin-bottom: 20px;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        button {
-            padding: 12px 24px;
-            font-size: 18px;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .yes-button {
-            background-color: #ff4081;
-        }
-        .yes-button:hover {
-            background-color: #e91e63;
-        }
-        .no-button {
-            background-color: #b0bec5;
-        }
-        .no-button:hover {
-            background-color: #90a4ae;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Girlfriend?</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif') center center fixed;
+      background-size: cover;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+      border: 5px solid pink;
+      background-image: url('https://png.pngtree.com/png-clipart/20201225/ourlarge/pngtree-pink-heart-pattern-vector-png-image_2622921.jpg');
+      background-size: contain;
+      background-repeat: repeat;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: deeppink;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      font-size: 1.2rem;
+      padding: 0.75rem 2rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    .yes {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    .no {
+      background-color: #ffcccc;
+      color: red;
+    }
+  </style>
 </head>
 <body>
-    <div class="background-animation"></div>
-    <div class="container">
-        <img src="https://www.pngall.com/wp-content/uploads/2016/07/Heart-PNG-File.png" alt="Süßes Herz">
-        <h1>Möchtest du mit mir auf ein Date gehen?</h1>
-        <div class="button-container">
-            <button class="yes-button" onclick="alert('Ja! Sehr gerne! 😊')">Ja</button>
-            <button class="no-button" onclick="alert('Oh nein! 😢')">Nein</button>
-        </div>
-    </div>
-    <script>
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-            document.querySelector(".background-animation").appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-        setInterval(createHeart, 500);
-    </script>
+  <div class="container">
+    <h1>Will you be my girlfriend?</h1>
+    <button class="btn yes">Yes</button>
+    <button class="btn no">No (you hate me)</button>
+  </div>
 </body>
 </html>
