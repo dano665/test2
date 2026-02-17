@@ -1,107 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Will You Be My Girlfriend?</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif') center center fixed;
-      background-size: cover;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-    }
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Mail, Instagram, Linkedin } from "lucide-react";
 
-    .container {
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 2rem;
-      border-radius: 2rem;
-      box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
-      border: 5px solid pink;
-      background-image: url('https://png.pngtree.com/png-clipart/20201225/ourlarge/pngtree-pink-heart-pattern-vector-png-image_2622921.jpg');
-      background-size: contain;
-      background-repeat: repeat;
-      text-align: center;
-    }
+const projects = [
+  {
+    title: "Brand Design – Urban Coffee",
+    category: "Branding",
+    description: "Corporate Identity, Logoentwicklung, Packaging & Social Media Assets.",
+  },
+  {
+    title: "Social Media Kampagne – Fashion Label",
+    category: "Social Media",
+    description: "Content Creation, Motion Graphics & Performance Visuals.",
+  },
+  {
+    title: "Editorial Design – Kulturmagazin",
+    category: "Print",
+    description: "Magazin Layout, Typografie-System & Covergestaltung.",
+  },
+  {
+    title: "Webdesign – Startup Landingpage",
+    category: "Web",
+    description: "UI/UX Design, Wireframes & Prototyping in Figma.",
+  },
+];
 
-    h1 {
-      font-size: 2rem;
-      color: deeppink;
-      margin-bottom: 2rem;
-    }
+export default function Portfolio() {
+  const [filter, setFilter] = React.useState("Alle");
 
-    .btn {
-      font-size: 1.2rem;
-      padding: 0.75rem 2rem;
-      margin: 0.5rem;
-      border: none;
-      border-radius: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
+  const categories = ["Alle", "Branding", "Social Media", "Print", "Web"];
 
-    .btn:hover {
-      transform: scale(1.1);
-    }
+  const filteredProjects =
+    filter === "Alle"
+      ? projects
+      : projects.filter((p) => p.category === filter);
 
-    .yes {
-      background-color: #ff69b4;
-      color: white;
-    }
+  return (
+    <div className="min-h-screen bg-neutral-950 text-white px-6 py-10 md:px-16">
+      {/* Hero */}
+      <section className="mb-20 grid md:grid-cols-2 gap-10 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+            Hallo, ich bin <span className="text-neutral-400">[Dein Name]</span>
+          </h1>
+          <p className="text-lg text-neutral-300 mb-8">
+            Mediengestalter mit Fokus auf visuelle Identitäten, digitales Design
+            und kreative Konzepte. Ich gestalte Marken, die auffallen – klar,
+            strategisch und modern.
+          </p>
+          <div className="flex gap-4">
+            <Button className="rounded-2xl">Portfolio ansehen</Button>
+            <Button variant="outline" className="rounded-2xl">
+              Kontakt
+            </Button>
+          </div>
+        </motion.div>
 
-    .no {
-      background-color: #ffcccc;
-      color: red;
-    }
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="bg-neutral-900 rounded-2xl h-80 flex items-center justify-center shadow-xl"
+        >
+          <span className="text-neutral-500">Hier kann dein Showreel / Mockup stehen</span>
+        </motion.div>
+      </section>
 
-    .gif-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
+      {/* Filter */}
+      <section className="mb-10 flex flex-wrap gap-3">
+        {categories.map((cat) => (
+          <Button
+            key={cat}
+            variant={filter === cat ? "default" : "outline"}
+            onClick={() => setFilter(cat)}
+            className="rounded-2xl"
+          >
+            {cat}
+          </Button>
+        ))}
+      </section>
 
-    .gif-container img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 2rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Will you be my girlfriend?</h1>
-    <button class="btn yes" onclick="showGif('yes')">Yes</button>
-    <button class="btn no" onclick="showGif('no')">No (you hate me)</button>
-  </div>
+      {/* Projekte */}
+      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+        {filteredProjects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-neutral-900 border-neutral-800 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+              <CardContent className="p-6">
+                <div className="h-40 bg-neutral-800 rounded-xl mb-4 flex items-center justify-center text-neutral-500">
+                  Projektbild
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-neutral-400 mb-2">
+                  {project.category}
+                </p>
+                <p className="text-neutral-300 text-sm">
+                  {project.description}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </section>
 
-  <div id="gifContainer" class="gif-container" style="display: none;">
-    <img id="gifImage" src="" alt="reaction gif">
-  </div>
+      {/* About */}
+      <section className="mb-24 max-w-3xl">
+        <h2 className="text-3xl font-bold mb-6">Über mich</h2>
+        <p className="text-neutral-300 leading-relaxed">
+          Ich verbinde Design mit Strategie. Mein Anspruch ist es, nicht nur
+          ästhetisch zu gestalten, sondern visuelle Lösungen zu entwickeln, die
+          funktionieren. Von der ersten Idee bis zum finalen Produkt arbeite ich
+          strukturiert, kreativ und mit einem klaren Blick für Details.
+        </p>
+      </section>
 
-  <script>
-    function showGif(answer) {
-      const gifContainer = document.getElementById('gifContainer');
-      const gifImage = document.getElementById('gifImage');
-      if (answer === 'yes') {
-        gifImage.src = 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXlyYjZwZ2s2N2o0dm5ha2p4Y2NjNnp6YjY5ZW4xMWtpM3U5MW15dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LYFt7hejexzNQUNJsJ/giphy.gif'; // fun hearts gif
-      } else {
-        gifImage.src = 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTEzc2c5eGVxaDlsOXZodjh3cHd3c3N4ZHpjYzM4c3ZudWd0OXJweiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tPdwMm4jyClgxTq/giphy.gif'; // exploding earth gif
-      }
-      gifContainer.style.display = 'flex';
-    }
-  </script>
-</body>
-</html>
+      {/* Kontakt */}
+      <section className="border-t border-neutral-800 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p className="text-neutral-400">© 2026 [Dein Name]</p>
+        <div className="flex gap-6">
+          <Mail className="hover:scale-110 transition-transform cursor-pointer" />
+          <Instagram className="hover:scale-110 transition-transform cursor-pointer" />
+          <Linkedin className="hover:scale-110 transition-transform cursor-pointer" />
+        </div>
+      </section>
+    </div>
+  );
+}
+
 
